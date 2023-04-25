@@ -1,4 +1,5 @@
 let saveButton = document.getElementById("save-button");
+
 const errorMessage =
   '<p class="bg-danger ">Valorile introduse in campuri nu sunt valide!</p>';
 
@@ -7,6 +8,7 @@ saveButton.addEventListener("click", () => {
   let description = document.getElementById("description");
   let form = document.getElementById("form-error");
   let table = document.querySelector("#table tbody");
+
   if (inputFormIsEmpty(title.value, description.value)) {
     title.innerHTML = "";
     description.innerHTML = "";
@@ -21,7 +23,7 @@ saveButton.addEventListener("click", () => {
       "<td>" +
       description.value +
       "</td>" +
-      '<td><button class="btn btn-danger ">Delete</button></td>' +
+      '<td><input type="button" value="Delete" onclick="deleteRow(this)"/></td>' +
       "</tr>";
   }
 });
@@ -35,4 +37,9 @@ function inputFormIsEmpty(title, description) {
     title === undefined ||
     description === undefined
   );
+}
+
+function deleteRow(btn) {
+  var row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
 }
